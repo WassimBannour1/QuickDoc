@@ -1,0 +1,94 @@
+{
+  "informationsDocument": {
+    "typeDocument": "Facture",
+    "numero": "FAC-2IC-23-0003",
+    "date": "16/11/2023"
+  },
+  "informationsClient": {
+    "client": "SAM ENERGIE",
+    "adresseClient": "7 RUE SAINTE CLAIRE DEVILLE, 77185 LOGNES, FRANCE",
+    "telephoneClient": "",
+    "emailClient": ""
+  },
+  "produits": [
+    {
+      "designation": "CONVENTION D'ANIMATION SAM ENERGIE",
+      "description": "100 U 3 233.33 € 3233.33€ | 20%",
+      "prix": "3233.33",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "Total H.T",
+      "description": "Total H.T: 3233.33 €",
+      "prix": "3233.33",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": "3233.33"
+    },
+    {
+      "designation": "IBAN",
+      "description": "FR7617515900000801892159173 Total Remise 0.00 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "BANQUE",
+      "description": "Total NET HT: 3233.33 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": "3233.33"
+    },
+    {
+      "designation": "Date règlement",
+      "description": "Date règlement : 16-11-2023 Mode règlement : Virement bancaire Total TVA: 646.67 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "Total TTC",
+      "description": "Total TTC: 3880.00 €",
+      "prix": "3880.00",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": "3880.00"
+    },
+    {
+      "designation": "En l'absence de paiement",
+      "description": "Taux de pénalité : 3 fois le taux d'intérêt légal en vigueur à la date d'émission de la facture.",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "SASU",
+      "description": "7 RUE SAINTE CLAIRE DEVILLE 77185 LOGNES, SIRET : 91528987000015 - TVA : FR24915289870",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "page 1",
+      "description": "--- Page Break ---",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    }
+  ],
+  "calculs": {
+    "totalHT": "3233.33 €",
+    "remise": "0.00 €",
+    "totalNetRemise": "3233.33 €",
+    "tva": "646.67 €",
+    "totalTTC": "3880.00 €"
+  }
+}

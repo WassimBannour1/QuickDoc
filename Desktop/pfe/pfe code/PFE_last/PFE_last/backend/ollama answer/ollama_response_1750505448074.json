@@ -1,0 +1,30 @@
+{
+  "informationsDocument": {
+    "typeDocument": "Facture",
+    "numero": "FAC-2IC-23-0003",
+    "date": "16/11/2023"
+  },
+  "informationsClient": {
+    "client": "SASU",
+    "adresseClient": "7 RUE SAINTE CLAIRE DEVILLE, 77185 LOGNES, FRANCE",
+    "telephoneClient": "",
+    "emailClient": ""
+  },
+  "produits": [
+    {
+      "designation": "Convention d'Animation SAM Energie",
+      "description": "100 U 3 233.33 € 3233.33€ | 20%",
+      "prix": "3233.33",
+      "unite": "eur",
+      "quantite": "",
+      "totalPrix": "3233.33"
+    }
+  ],
+  "calculs": {
+    "totalHT": "3233.33 €",
+    "remise": "0.00 €",
+    "totalNetRemise": "3233.33 €",
+    "tva": "646.67 €",
+    "totalTTC": "3880.00 €"
+  }
+}

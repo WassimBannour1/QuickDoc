@@ -1,0 +1,30 @@
+{
+  "informationsDocument": {
+    "typeDocument": "Facture",
+    "numero": "FAC-2IC-23-0003",
+    "date": "16/11/2023"
+  },
+  "informationsClient": {
+    "client": "Sam Energy France SASU, Inc.",
+    "adresseClient": "7 Rue Sainte Claire Deville, 77185 Lognes, France",
+    "telephoneClient": "",
+    "emailClient": "mohamed.kemmar@icloud.com"
+  },
+  "produits": [
+    {
+      "designation": "Convention d'Animation Sam Energy France",
+      "description": "Conventional de l'animation du groupe Sam (323,33€)",
+      "prix": "3233.33€",
+      "unite": "pièce",
+      "quantite": "",
+      "totalPrix": ""
+    }
+  ],
+  "calculs": {
+    "totalHT": "3 233.33 €",
+    "remise": "",
+    "totalNetRemise": "0.00 €",
+    "tva": "646.67 €",
+    "totalTTC": "3 880.00 €"
+  }
+}

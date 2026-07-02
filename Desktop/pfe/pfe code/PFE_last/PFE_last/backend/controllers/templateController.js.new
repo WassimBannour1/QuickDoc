@@ -1,0 +1,289 @@
+const Template = require('../models/template');
+const fs = require('fs');
+const path = require('path');
+
+// Get all templates (predefined for everyone, custom only for the user who created them)
+exports.getAllTemplates = async (req, res) => {
+  const userId = req.user.id; // Assuming user info is in the request after authentication
+
+  try {
+    const results = await Template.getAllTemplates(userId);
+    
+    return res.status(200).json({
+      success: true,
+      count: results.length,
+      data: results
+    });
+  } catch (err) {
+    console.error('Error fetching templates:', err);
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Error fetching templates', 
+      error: err.message 
+    });
+  }
+};
+
+// Get predefined templates
+exports.getPredefinedTemplates = async (req, res) => {
+  try {
+    const results = await Template.getPredefinedTemplates();
+    
+    return res.status(200).json({
+      success: true,
+      count: results.length,
+      data: results
+    });
+  } catch (err) {
+    console.error('Error fetching predefined templates:', err);
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Error fetching predefined templates', 
+      error: err.message 
+    });
+  }
+};
+
+// Get user's custom templates
+exports.getCustomTemplates = async (req, res) => {
+  const userId = req.user.id; // Assuming user info is in the request after authentication
+
+  try {
+    const results = await Template.getCustomTemplates(userId);
+    
+    return res.status(200).json({
+      success: true,
+      count: results.length,
+      data: results
+    });
+  } catch (err) {
+    console.error('Error fetching custom templates:', err);
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Error fetching custom templates', 
+      error: err.message 
+    });
+  }
+};
+
+// Get template by ID
+exports.getTemplateById = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const results = await Template.getTemplateById(id);
+    
+    if (results.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Template not found'
+      });
+    }
+    
+    return res.status(200).json({
+      success: true,
+      data: results[0]
+    });
+  } catch (err) {
+    console.error('Error fetching template:', err);
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Error fetching template', 
+      error: err.message 
+    });
+  }
+};
+
+// Create new template
+exports.createTemplate = (req, res) => {
+  const userId = req.user.id; // Assuming user info is in the request after authentication
+  
+  // Handle file upload for preview image if present
+  let previewImagePath = null;
+  if (req.file) {
+    previewImagePath = `/uploads/templates/${req.file.filename}`;
+  }
+  
+  // Parse design_config if it's a string
+  let designConfig = req.body.design_config;
+  if (typeof designConfig === 'string') {
+    try {
+      designConfig = JSON.parse(designConfig);
+    } catch (error) {
+      console.error('Error parsing design_config:', error);
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid design_config format'
+      });
+    }
+  }
+  
+  const templateData = {
+    name: req.body.name,
+    type: req.body.type || 'custom', // Default to custom if not specified
+    created_by: userId,
+    html_structure: req.body.html_structure,
+    design_config: designConfig,
+    preview_image_path: previewImagePath
+  };
+  
+  Template.createTemplate(templateData, (err, result) => {
+    if (err) {
+      console.error('Error creating template:', err);
+      return res.status(500).json({ 
+        success: false, 
+        message: 'Error creating template', 
+        error: err 
+      });
+    }
+    
+    return res.status(201).json({
+      success: true,
+      message: 'Template created successfully',
+      data: { id: result.insertId, ...templateData }
+    });
+  });
+};
+
+// Update template
+exports.updateTemplate = (req, res) => {
+  const id = req.params.id;
+  const userId = req.user.id; // Assuming user info is in the request after authentication
+  
+  // First check if the template exists and belongs to the user
+  Template.getTemplateById(id, (err, results) => {
+    if (err) {
+      console.error('Error fetching template for update:', err);
+      return res.status(500).json({ 
+        success: false, 
+        message: 'Error fetching template for update', 
+        error: err 
+      });
+    }
+    
+    if (results.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Template not found'
+      });
+    }
+    
+    const template = results[0];
+    
+    // Check if the template belongs to the user or is predefined
+    if (template.created_by !== userId && template.type === 'custom') {
+      return res.status(403).json({
+        success: false,
+        message: 'Not authorized to update this template'
+      });
+    }
+    
+    // Handle file upload for preview image if present
+    let previewImagePath = template.preview_image_path;
+    if (req.file) {
+      // Delete old preview image if exists
+      if (template.preview_image_path) {
+        const oldImagePath = path.join(__dirname, '..', 'public', template.preview_image_path);
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+        }
+      }
+      previewImagePath = `/uploads/templates/${req.file.filename}`;
+    }
+    
+    // Parse design_config if it's a string
+    let designConfig = req.body.design_config;
+    if (typeof designConfig === 'string') {
+      try {
+        designConfig = JSON.parse(designConfig);
+      } catch (error) {
+        console.error('Error parsing design_config:', error);
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid design_config format'
+        });
+      }
+    }
+    
+    const templateData = {
+      name: req.body.name || template.name,
+      type: template.type, // Type cannot be changed
+      html_structure: req.body.html_structure || template.html_structure,
+      design_config: designConfig || template.design_config,
+      preview_image_path: previewImagePath
+    };
+    
+    Template.updateTemplate(id, templateData, (err, result) => {
+      if (err) {
+        console.error('Error updating template:', err);
+        return res.status(500).json({ 
+          success: false, 
+          message: 'Error updating template', 
+          error: err 
+        });
+      }
+      
+      if (result.affectedRows === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'Template not found or not authorized to update'
+        });
+      }
+      
+      return res.status(200).json({
+        success: true,
+        message: 'Template updated successfully',
+        data: { id, ...templateData }
+      });
+    });
+  });
+};
+
+// Delete template
+exports.deleteTemplate = async (req, res) => {
+  const id = req.params.id;
+  const userId = req.user.id; // Assuming user info is in the request after authentication
+
+  try {
+    // First check if the template exists and belongs to the user
+    const template = await Template.getTemplateById(id);
+    
+    if (!template || template.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Template not found'
+      });
+    }
+    
+    // Check if the template belongs to the user or is predefined
+    if (template[0].created_by !== userId && template[0].type === 'custom') {
+      return res.status(403).json({
+        success: false,
+        message: 'Not authorized to delete this template'
+      });
+    }
+    
+    // Delete preview image if exists
+    if (template[0].preview_image_path) {
+      const imagePath = path.join(__dirname, '..', 'public', template[0].preview_image_path);
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+      }
+    }
+    
+    // Delete the template
+    await Template.deleteTemplate(id);
+    
+    return res.status(200).json({
+      success: true,
+      message: 'Template deleted successfully'
+    });
+  } catch (err) {
+    console.error('Error deleting template:', err);
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Error deleting template', 
+      error: err.message 
+    });
+  }
+};

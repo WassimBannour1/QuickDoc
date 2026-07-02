@@ -1,0 +1,70 @@
+{
+  "informationsDocument": {
+    "typeDocument": "Facture",
+    "numero": "FAC-2IC-23-0003",
+    "date": "16/11/2023"
+  },
+  "informationsClient": {
+    "client": "SAM ENERGIE",
+    "adresseClient": "7 RUE SAINTE CLAIRE DEVILLE, 77185 LOGNES, FRANCE",
+    "telephoneClient": "",
+    "emailClient": ""
+  },
+  "produits": [
+    {
+      "designation": "",
+      "description": "CONVENTION D'ANIMATION SAM ENERGIE",
+      "prix": "3233.33 €",
+      "unite": "€",
+      "quantite": "100 U 3 233.33 € 20%",
+      "totalPrix": "3233.33"
+    },
+    {
+      "designation": "",
+      "description": "Total H.T: 3233.33 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": "Total HT : 3 233.33 €"
+    },
+    {
+      "designation": "",
+      "description": "IBAN : FR7617515900000801892159173 Total Remise: 0.00 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "",
+      "description": "Total NET HT : 3 233.33 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "",
+      "description": "Date règlement: 16-11-2023 Mode règlement: Virement bancaire Total TVA: 646.67 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    },
+    {
+      "designation": "",
+      "description": "Total TTC: 3 880.00 €",
+      "prix": "",
+      "unite": "",
+      "quantite": "",
+      "totalPrix": ""
+    }
+  ],
+  "calculs": {
+    "totalHT": "3233.33 €",
+    "remise": "0.00 €",
+    "totalNetRemise": "3 233.33 €",
+    "tva": "646.67 €",
+    "totalTTC": "3 880.00 €"
+  }
+}

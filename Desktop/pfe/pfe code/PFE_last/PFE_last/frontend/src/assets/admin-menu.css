@@ -1,0 +1,250 @@
+/* Admin Menu Styling */
+:root {
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 70px;
+  --primary-color: #002446;
+  --primary-hover: #003a6c;
+  --accent-color: #4bc0c0;
+  --text-light: rgba(255, 255, 255, 0.9);
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --bg-hover: rgba(255, 255, 255, 0.1);
+  --bg-active: rgba(255, 255, 255, 0.15);
+  --transition-speed: 0.3s;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Menu Items */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+  animation: slideInFromLeft 0.4s ease forwards;
+  animation-delay: calc(0.1s * var(--i, 0));
+  opacity: 0;
+}
+
+.menu-item:hover {
+  background-color: var(--bg-hover);
+  transform: translateX(5px);
+}
+
+.menu-item.active {
+  background-color: var(--bg-active);
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: var(--accent-color);
+  border-radius: 0 2px 2px 0;
+}
+
+.menu-icon {
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+  font-size: 16px;
+  transition: all var(--transition-speed) ease;
+}
+
+.menu-title {
+  flex: 1;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all var(--transition-speed) ease;
+}
+
+.sidebar.collapsed .menu-title {
+  display: none;
+}
+
+/* Dropdown icon */
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 12px;
+  transition: transform var(--transition-speed) ease;
+}
+
+.dropdown-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Submenu */
+.submenu {
+  margin-left: 25px;
+  margin-top: 5px;
+  border-left: 1px solid var(--border-light);
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all var(--transition-speed) ease;
+  animation: fadeIn 0.3s ease-out forwards;
+  animation-delay: calc(0.05s * var(--i, 0));
+}
+
+.submenu-item:hover {
+  background-color: var(--bg-hover);
+  color: white;
+}
+
+.submenu-item.active {
+  background-color: var(--bg-active);
+  color: white;
+}
+
+.submenu-icon {
+  margin-right: 10px;
+  width: 16px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.submenu-title {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed Sidebar States */
+.sidebar.collapsed .menu-item {
+  padding: 12px;
+  justify-content: center;
+}
+
+.sidebar.collapsed .menu-icon {
+  margin-right: 0;
+  font-size: 18px;
+}
+
+.sidebar.collapsed .submenu {
+  position: absolute;
+  left: var(--sidebar-collapsed-width);
+  top: 0;
+  margin-left: 0;
+  background-color: var(--primary-hover);
+  border-radius: 0 8px 8px 0;
+  padding: 10px;
+  min-width: 180px;
+  z-index: 100;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+  border-left: none;
+}
+
+.sidebar.collapsed .dropdown-icon {
+  display: none;
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* For small screens adaptation */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .sidebar-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .menu-item {
+    margin: 5px;
+    min-width: 150px;
+  }
+  
+  .submenu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    margin-left: 0;
+    z-index: 100;
+  }
+} 

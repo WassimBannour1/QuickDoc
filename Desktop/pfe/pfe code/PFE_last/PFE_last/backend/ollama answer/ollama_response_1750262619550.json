@@ -1,0 +1,30 @@
+{
+  "informationsDocument": {
+    "typeDocument": "facture",
+    "numero": "FAC-2IC-23-0003",
+    "date": "16/11/2023"
+  },
+  "informationsClient": {
+    "client": "SASU",
+    "adresseClient": "7 RUE SAINTE CLAIRE DEVILLE 77185 LOGNES, FRANCE",
+    "telephoneClient": "+33699860544",
+    "emailClient": "mohamed.kemmar@icloud.com"
+  },
+  "produits": [
+    {
+      "designation": "Convection Saison",
+      "description": "Informatique Saison 233.33 € (1,00 U)",
+      "prix": "1,00",
+      "unite": "pièce",
+      "quantite": "1",
+      "totalPrix": "3233.33"
+    }
+  ],
+  "calculs": {
+    "totalHT": "3 233.33 €",
+    "remise": "0.00 €",
+    "totalNetRemise": "3 233.33 €",
+    "tva": "646.67 €",
+    "totalTTC": "3 880.00 €"
+  }
+}

@@ -1,0 +1,21 @@
+# Documentation des Routes de l'Application QuikDoc
+
+## Routes Principales
+
+| Ancienne Route | Nouvelle Route | Nom | Composant | Description |
+|---------------|---------------|-----|-----------|-------------|
+| / | / | - | - | Redirection vers /accueil |
+| /home | /accueil | Home | Home_H.vue | Page d'accueil du site |
+| /signup | /inscription | SignUp | SignUp.vue | Page d'inscription |
+| /signin | /connexion | SignIn | SignIn.vue | Page de connexion |
+| /mdp_oublie | /mot-de-passe-oublie | ForgotPassword | mdp_oublier.vue | Page de récupération de mot de passe |
+| /new_password/:token | /nouveau-mot-de-passe/:token | ResetPassword | new_password.vue | Page de création d'un nouveau mot de passe |
+| /verify-reset-code | /verification-code | VerifyResetCode | validate_code.vue | Page de vérification du code de réinitialisation |
+| /user | /tableau-de-bord | User_U | User_U.vue | Tableau de bord utilisateur (protégé) |
+| /:pathMatch(.*) | /:pathMatch(.*) | - | - | Redirection vers /connexion pour les routes non trouvées |
+
+## Notes
+
+- La route /tableau-de-bord nécessite une authentification (meta: { requiresAuth: true })
+- Les redirections ont été mises à jour pour utiliser les nouvelles routes
+- Les noms des composants n'ont pas été modifiés pour maintenir la compatibilité avec le code existant

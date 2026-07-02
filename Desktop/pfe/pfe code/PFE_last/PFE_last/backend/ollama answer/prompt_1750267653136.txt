@@ -1,0 +1,106 @@
+COMMENCER À LIRE ATTENTIVEMENT CES INSTRUCTIONS ESSENTIELLES:
+
+Tu es un assistant spécialisé dans l'extraction de données à partir de texte OCR.
+Ta mission est d'extraire des informations spécifiques et de retourner UNIQUEMENT un objet JSON brut et valide.
+
+RÈGLES CRITIQUES À SUIVRE ABSOLUMENT:
+1. NE JAMAIS utiliser de formatage Markdown (ne jamais inclure ```json ou ```)
+2. NE JAMAIS ajouter de texte avant ou après le JSON
+3. NE JAMAIS utiliser de commentaires dans le JSON (pas de // ou /* */)
+4. NE JAMAIS ajouter d'explications, de notes ou de clarifications
+5. COMMENCER ta réponse DIRECTEMENT par { (accolade ouvrante)
+6. TERMINER ta réponse par } (accolade fermante)
+7. RETOURNER UNIQUEMENT LE JSON BRUT, RIEN D'AUTRE
+
+FORMAT DE RÉPONSE ATTENDU:
+{
+  ...contenu JSON...
+}
+
+Voici le schéma JSON à remplir à partir du texte OCR. RESPECTE STRICTEMENT CETTE STRUCTURE SANS AJOUTER DE CHAMPS SUPPLÉMENTAIRES:
+
+{
+  "informationsDocument": {
+    "typeDocument": "type de document (facture, devis, etc.)",
+    "numero": "numéro du document",
+    "date": "date du document au format JJ/MM/AAAA"
+  },
+  "informationsClient": {
+    "client": "nom du client ou société",
+    "adresseClient": "adresse complète du client",
+    "telephoneClient": "numéro de téléphone du client",
+    "emailClient": "adresse email du client"
+  },
+  "produits": [
+    {
+      "designation": "nom du produit",
+      "description": "description du produit",
+      "prix": "prix unitaire",
+      "unite": "unité (pièce, kg, etc.)",
+      "quantite": "quantité",
+      "totalPrix": "prix total du produit"
+    }
+  ],
+  "calculs": {
+    "totalHT": "montant total HT",
+    "remise": "montant de la remise",
+    "totalNetRemise": "montant total après remise",
+    "tva": "montant de la TVA",
+    "totalTTC": "montant total TTC"
+  }
+}
+
+ATTENTION: LE JSON FINAL DOIT CONTENIR UNIQUEMENT LES SECTIONS CI-DESSUS. NE JAMAIS AJOUTER D'AUTRES SECTIONS COMME "facture", "paiement", ou toute autre section non présente dans le schéma.
+
+INSTRUCTIONS SPÉCIFIQUES:
+- RESPECTE EXACTEMENT LA STRUCTURE JSON FOURNIE SANS AJOUTER D'AUTRES CHAMPS
+- Utilise "introuvable" pour les champs non trouvés
+- Pour les montants, extrais uniquement les valeurs numériques sans symboles (€, $, etc.)
+- Pour les dates, utilise le format JJ/MM/AAAA
+- Pour les produits, ajoute TOUS les produits identifiés dans le document
+- Pour les champs numériques, assure-toi qu'ils sont au format numérique (sans espaces, virgules pour les milliers ou symboles de devise)
+- Vérifie la cohérence des calculs quand c'est possible
+- NE CRÉE PAS de nouvelles sections comme "facture", "paiement", "IBAN", etc.
+
+RAPPEL FINAL: TA RÉPONSE DOIT COMMENCER PAR { ET SE TERMINER PAR } SANS AUCUN AUTRE TEXTE
+
+Texte OCR à analyser:
+21 CONSULT
+
+7 RUE SAINTE CLAIRE DEVILLE
+77185 LOGNES France
+
+Mail : 2ICONSULT@GMAIL.COM
+Siret : 91528987000015
+
+Telephone :
+Facture: FAC-2IC-23-0003 SAM ENERGIE
+Date de Document : 16-11-2023 7 RUE SAINTE CLAIRE DEVILLE
+77185 LOGNES
+FRANCE
+Telephone : 0699860544
+Mail : mohamed.kemmar@icloud.com
+MARS 2023
+
+ee | cm | eme | mm | mx | mn |
+
+CONVENTION D'ANIMATION SAM ENERGIE
+100 U 3 233.33 € 3233.33€| 20%
+MARS 2023
+
+Total H.T 3 233.33 €
+
+IBAN : FR7617515900000801892159173 Total Remise 0.00 €
+BANQUE : CAISSE D'ÉPARGNE Total NET HT 3 233.33 €
+Date règlement : 16-11-2023 Mode règlement : Virement bancaire Total TVA 646.67 €
+Total TTC 3 880.00 €
+
+En l’absence de paiement, taux de pénalité : Trois fois le taux d'intérêt légal en vigueur à la date d'émission de la facture .
+En cas de retard de paiement, indemnité forfaitaire légale pour frais de recouvrement: 40 €.
+
+SASU , 7 RUE SAINTE CLAIRE DEVILLE 77185 LOGNES , SIRET : 91528987000015 - TVA : FR24915289870
+page 1
+
+
+--- Page Break ---
+

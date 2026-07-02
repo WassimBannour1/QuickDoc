@@ -1,0 +1,30 @@
+{
+  "informationsDocument": {
+    "typeDocument": "Facture",
+    "numero": "FAC-2IC-23-0003",
+    "date": "Not detected"
+  },
+  "informationsClient": {
+    "client": "SAM ENERGIE",
+    "adresseClient": "Not detected",
+    "telephoneClient": "Not detected",
+    "emailClient": "Not detected"
+  },
+  "produits": [
+    {
+      "designation": "CONVENTION D'ANIMATION SAM ENERGIE",
+      "description": "MARS 2023",
+      "prix": "3233.33 €",
+      "unite": "Pièce",
+      "quantite": "1",
+      "totalPrix": "3233.33"
+    }
+  ],
+  "calculs": {
+    "totalHT": "3233.33 €",
+    "remise": "0.00 €",
+    "totalNetRemise": "3233.33 €",
+    "tva": "646.67 €",
+    "totalTTC": "3880.00 €"
+  }
+}

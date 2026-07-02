@@ -1,0 +1,30 @@
+{
+  "informationsDocument": {
+    "typeDocument": "Facture",
+    "numero": "FAC-2IC-23-0003",
+    "date": "16/11/2023"
+  },
+  "informationsClient": {
+    "client": "SAM ENERGIE",
+    "adresseClient": "7 RUE SAINTE CLAIRE DEVILLE, 77185 LOGNES",
+    "telephoneClient": "",
+    "emailClient": "mohamed.kemmar@icloud.com"
+  },
+  "produits": [
+    {
+      "designation": "Convention d'Animation Sam Énergie",
+      "description": "100 U 3,23 € 32.33€ | 20%",
+      "prix": "32.33",
+      "unite": "€",
+      "quantite": "100 U",
+      "totalPrix": "32.33"
+    }
+  ],
+  "calculs": {
+    "totalHT": "32.33 €",
+    "remise": "0.00 €",
+    "totalNetRemise": "32.33 €",
+    "tva": "646.67 €",
+    "totalTTC": "410.00 €"
+  }
+}
